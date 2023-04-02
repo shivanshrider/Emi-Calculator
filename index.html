@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Loan calculator-Shivansh Tiwari</title>
+   <style>
+      .Loan_calcualtor{
+         width: 400px;
+         height: 550px;
+         background-color: rgb(191, 243, 6);
+         position: absolute;
+         left: 50%;
+         top: 50%;
+         transform: translateX(-50%) translateY(-50%);
+         padding: 20px 0px 0px 100px;
+         border-radius: 10px;
+         color: rgb(0, 0, 0);
+      }
+      p{
+         color: rgb(0, 0, 0);
+         font-size: 15px;
+         font-family: sans-serif;
+      }
+      h1{
+         color: rgb(245, 0, 0);
+         font-family: Georgia, 'Times New Roman', Times, serif;
+      }
+      input{
+         height: 33px;
+         width: 70%;
+         background-color: green;
+         font-size: 20px;
+         color: rgb(0, 0, 0);
+         padding: 7px;
+      }
+      #calculate_op{
+         color: rgb(0, 0, 0);
+         font-size: 20px;
+         width: 100px;
+         align-content: center;
+         margin-left:100px;
+         cursor: pointer;
+      }
+   </style>
+</head>
+<body>
+   <div class="Loan_calcualtor">
+      <h1>Loan Calculator </h1>
+      <p>Loan amount: &#8377
+         <input type="number" id="amount" placeholder="Enter amount..">
+      </p>
+      <p>Annual Rate (Interest): %
+         <input step=".1" id="rate" placeholder="Enter rate..">
+      </p>
+      <p>Tenure (No. Of Months):
+         <input type="number" id="time" placeholder="Enter time..">
+      </p>
+         <input type="button" value="Calculate" id="calculate_op" onclick="calculate()">
+         <p>Total Interest: &#8377
+            <span style="font-weight: 20px; color: rgb(253, 3, 3);" id="output1"></span>
+         </p>
+         <p>Total Payment: &#8377
+            <span style="font-weight: 20px; color: rgb(253, 3, 3);" id="output2"></span>
+
+         </p>
+      <p>Total EMI: &#8377
+         <span style="font-weight: 20px; color: rgb(253, 3, 3);" id="output3"></span>
+      </p>
+   </div>
+   <script>
+      function calculate(){
+         amount=document.getElementById('amount').value
+         rate=document.getElementById('rate').value
+         time=document.getElementById('time').value
+         const interest = (amount * (rate * 0.01)) / time;
+         const totalinterest = (amount*rate*time);
+         const totalpayment = (totalinterest+amount); 
+         let emi = ((amount / time) + interest).toFixed(2);
+         emi = emi.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+         document.getElementById("output1").innerHTML=totalinterest
+         document.getElementById("output2").innerHTML=totalpayment
+         document.getElementById("output3").innerHTML=emi
+      }
+   </script>
+</body>
+</html>
